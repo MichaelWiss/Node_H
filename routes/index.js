@@ -7,12 +7,18 @@ router.get('/', (req, res) => {
   // res.json(Michael);
   // res.send(req.query.name);
   // res.json(req.query);
-  res.render();
+  res.render('hello');
 });
 
 router.get('/reverse/:name', (req, res) => {
 	const reverse = [...req.params.name].reverse().
 	  join('');
+    res.send(reverse);
+});
+
+router.get('/reverse/:name', (req, res) => {
+   const reverse = [...req.params.name].reverse().
+      join('');
     res.send(reverse);
 });
 
