@@ -10,9 +10,9 @@ const storeSchema = new mongoose.Schema({
    },
    slug: String,
    description: {
-   	type: string,
+   	type: String,
    	trim: true
-   }
+   },
    tags: [String]
 });
 
