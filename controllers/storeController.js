@@ -1,4 +1,4 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 const Store = mongoose.model('Store');
 
 
@@ -15,5 +15,6 @@ exports.addStore = (req, res) => {
 exports.createStore = async (req, res) => {
 	const store = new Store(req.body);
 	await store.save();
+	res.redirect('/');
 	console.log('It worked');
 };
