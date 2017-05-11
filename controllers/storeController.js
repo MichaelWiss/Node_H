@@ -14,4 +14,8 @@ exports.addStore = (req, res) => {
 
 exports.createStore = (req, res) => {
 	const store = new Store(req.body);
+	store
+	   .save()
+	   .then()
+	console.log('It worked');
 };
