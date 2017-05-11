@@ -13,6 +13,5 @@ exports.addStore = (req, res) => {
 };
 
 exports.createStore = (req, res) => {
-	console.log(req.body);
-	res.json(req.body);
+	const store = new Store(req.body);
 };
