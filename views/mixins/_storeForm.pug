@@ -1,7 +1,7 @@
 mixin storeForm(store = {})
  form(action="/add" method="POST" class="card")
    label(for="name") Name
-   input(type="text" name="name")
+   input(type="text" name="name" value=store.name)
    label(for="description") Description
    textarea(name="description")
    - const choices = ['wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
