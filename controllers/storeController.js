@@ -24,3 +24,11 @@ exports.getStores = async (req, res) => {
 	console.log(stores);
 	res.render('stores', { title: 'Stores', stores });
 };
+
+exports.editStore = async (req, res) => {
+	//find store
+	const store = await Store.findOne({_id: req.params.id });
+	res.json(store);
+	//confirm they are the owner
+	//render out edit form
+}
