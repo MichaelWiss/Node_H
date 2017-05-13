@@ -33,3 +33,9 @@ exports.editStore = async (req, res) => {
 	//render out edit form
 	res.render('editStore',  { title: `Edit ${store.name}`, store });
 }
+
+exports updateStore = async (req, res) => {
+	//find and update store
+	const store = Store.findOneAndUpdate()
+	//redirect to store
+}
