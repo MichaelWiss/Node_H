@@ -135,12 +135,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+   value: true
 });
 function autocomplete(input, latInput, lngInput) {
-    console.log(input, latInput, lngInput);
-    if (!input) return;
-    var dropdown = new google.maps.places.Autocomplete(input);
+   console.log(input, latInput, lngInput);
+   if (!input) return;
+   var dropdown = new google.maps.places.Autocomplete(input);
+
+   dropdown.add.Listener('place_changed', function () {
+      var place = dropdown.getPlace();
+      console.log(place);
+      latInput.value = place.geometry.location.lat();
+      lngInput.value = place.geometry.location.lng();
+   });
 }
 
 exports.default = autocomplete;
