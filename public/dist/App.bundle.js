@@ -139,6 +139,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 function autocomplete(input, latInput, lngInput) {
     console.log(input, latInput, lngInput);
+    if (!input) return;
+    var dropdown = new google.maps.places.Autocomplete(input);
 }
 
 exports.default = autocomplete;
