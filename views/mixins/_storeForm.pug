@@ -4,6 +4,10 @@ mixin storeForm(store = {})
    input(type="text" name="name" value=store.name)
    label(for="description") Description
    textarea(name="description")= store.description
+   //- image upload
+   label(for="photo") Photo
+     input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+     if store.photo
    //- address, long and lat
    label(for="address") Address
    input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))
