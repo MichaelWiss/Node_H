@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
 const Store = mongoose.model('Store');
+const multer =require('multer');
+const multerOptions = {
+	storage: multer.memorStorage(),
+	fileFilter: function(req, file, next) {
+      const isPhoto = file.mimetype.startsWith('image/');
+      if(isPhoto) {
+      	next
+      }
+	}
+}
+
 
 
 exports.homePage = (req, res) => {
