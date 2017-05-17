@@ -11,7 +11,7 @@ const multerOptions = {
       if(isPhoto) {
       	next(null, true);
       } else {
-      	next({ message: 'That filetype isn\'t allowed!' }; false);
+      	next({ message: 'That filetype isn\'t allowed!' }, false);
       }
 	}
 };
@@ -36,8 +36,10 @@ exports.resize = async (req, res, next) => {
 	  next();
 	  return;
 	}
-	console.log('req.file');
-}
+	const extension = req.file.mimetype.split('/')[1];
+	req.body.photo = `${uuid.v4()}.${extension}`;
+	
+};
 
 
 exports.createStore = async (req, res) => {
