@@ -5,7 +5,7 @@ const jimp = require('jimp');
 const uuid = require('uuid');
 
 const multerOptions = {
-	storage: multer.memorStorage(),
+	storage: multer.memoryStorage(),
 	fileFilter: function(req, file, next) {
       const isPhoto = file.mimetype.startsWith('image/');
       if(isPhoto) {
