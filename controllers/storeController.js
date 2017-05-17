@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Store = mongoose.model('Store');
 const multer =require('multer');
+const jimp = require('jimp');
+const uuid = require('uuid');
+
 const multerOptions = {
 	storage: multer.memorStorage(),
 	fileFilter: function(req, file, next) {
@@ -25,7 +28,16 @@ exports.addStore = (req, res) => {
 	res.render('editStore', { title: 'Add Store' });
 };
 
-export.upload = multer(multerOptions).single('photo');
+exports.upload = multer(multerOptions).single('photo');
+
+exports.resize = async (req, res, next) {
+	//check if there is no new file
+	if(!req.file) {
+	  next();
+	  
+	}
+}
+
 
 exports.createStore = async (req, res) => {
 	const store = await (new Store(req.body)).save();
