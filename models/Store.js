@@ -51,4 +51,8 @@ storeSchema.pre('save', async function(next) {
 	//TODO make more resilian so slugs are unique
 });
 
+storeSchema.statics.getTagsList = function() {
+  
+}
+
 module.exports = mongoose.model('Store', storeSchema);
