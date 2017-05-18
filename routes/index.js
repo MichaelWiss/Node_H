@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const storeController = require('../controllers/storeController');
-
 const { catchErrors } = require('../handlers/errorHandlers');
 
 // Do work here
@@ -21,6 +20,9 @@ router.post('/add/:id',
 	catchErrors(storeController.updateStore)
 );
 
-router.get('/stores/:id/edit', catchErrors(storeController.editStore));
+router.get('/store/:id/edit', catchErrors(storeController.editStore));
+
+
+router.get('/store/:slug', catchErrors(storeController.getStoreBySlug));
 
 module.exports = router;
