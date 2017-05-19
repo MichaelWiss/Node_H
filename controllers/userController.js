@@ -7,3 +7,7 @@ exports.loginForm = (req, res) => {
 exports.registerForm = (req, res) => {
 	res.render('register', { title: 'Register' });
 };
+
+exports.validateRegister = (req, res, next) {
+	req.sanitizeBody('name');
+}
