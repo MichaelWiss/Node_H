@@ -6,4 +6,4 @@ exports.loginForm = (req, res) => {
 
 exports.registerForm = (req, res) => {
 	res.render('register', { title: 'Register' });
-}
+};
