@@ -8,7 +8,7 @@ exports.registerForm = (req, res) => {
 	res.render('register', { title: 'Register' });
 };
 
-exports.validateRegister = (req, res, next) {
+exports.validateRegister = (req, res, next) => {
 	req.sanitizeBody('name');
 	req.checkBody('name', 'You must supply a name!').notEmpty();
 	req.checkBody('email', 'That Email is not valid!').isEmail();
@@ -22,7 +22,10 @@ exports.validateRegister = (req, res, next) {
 	req.checkBody('password-confirm', 'Oops! your passwords do not match').equals(req.body.password);
 
 	const errors = req.validationErrors();
-	if(error) {
+	if(errors) {
 		req.flash('error', errors.map(err => err.msg));
+        res.render('register', { title: 'Register', body: req.body, flashes: req.flash() });
+        return;
 	}
-}
+	next();
+};
