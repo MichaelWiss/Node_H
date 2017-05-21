@@ -23,7 +23,8 @@ const userSchema = new Schema({
 });
 
 userSchema.virtual('gravatar').get(function() {
-    return `http://www.badassoftheweek.com/mifune.jpg`;
+    const hash = md5(this.email);
+    return `https://gravatar.com/avatar/${hash}?s=200`;
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
