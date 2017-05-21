@@ -22,6 +22,10 @@ const userSchema = new Schema({
 	}
 });
 
+userSchema.virtual('gravatar').get(function() {
+    return `http://www.badassoftheweek.com/mifune.jpg`;
+});
+
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(mongodbErrorHandler);
 
