@@ -40,7 +40,7 @@ exports.register = async (req, res, next) => {
 };
 
 exports.account = (req, res) => {
-	res.render('account', {'Edit Your Account' });
+	res.render('account', { title: 'Edit Your Account' });
 };
 
 exports.updateAccount = async (req, res) => {
@@ -49,5 +49,11 @@ exports.updateAccount = async (req, res) => {
 		email: req.body.email
 	};
 
-	const user = await User.findOneAndUpdate();
+	const user = await User.findOneAndUpdate(
+       { _id: req.user._id },
+       { $set: updates },
+       { new: true, runValidators: true, context: 'query'}
+	);
+
+	res.json(user);
 };
