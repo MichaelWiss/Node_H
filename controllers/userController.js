@@ -41,4 +41,13 @@ exports.register = async (req, res, next) => {
 
 exports.account = (req, res) => {
 	res.render('account', {'Edit Your Account' });
-}
+};
+
+exports.updateAccount = async (req, res) => {
+	const updates = {
+		name: req.body.name,
+		email: req.body.email
+	};
+
+	const user = await User.findOneAndUpdate();
+};
