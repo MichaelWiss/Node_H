@@ -38,3 +38,7 @@ exports.register = async (req, res, next) => {
     await register(user, req.body.password);
     next(); 
 };
+
+exports.account = (req, res) => {
+	res.render('account', {'Edit Your Account' });
+}
