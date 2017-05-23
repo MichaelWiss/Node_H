@@ -1,5 +1,7 @@
 const passport = require('passport');
 const crypto = require('crypto');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 
 exports.login = passport.authenticate('local', {
    failureRedirect: '/login',
@@ -31,7 +33,8 @@ exports.forgot = async (req, res) => {
 		return res.redirect('/login');
 	}
 
-	user.resetPasswordToken = 
+	user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
+	user.resetPasswordExpires = Date.now() + 3600000;
 	//set reset tokens and expiry on their account
-	user.reset
+	
 }
