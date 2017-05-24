@@ -26,30 +26,32 @@ exports.isLoggedIn = (req, res, next) => {
 };
 
 exports.forgot = async (req, res) => {
-	//see if a user with that email exists
-	const user = await User.findOne({ email: req.body.email });
-	if(!user) {
-		req.flash('error', 'No account with that email exists');
-		return res.redirect('/login');
-	}
-
-	user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
-	user.resetPasswordExpires = Date.now() + 3600000;
-	//set reset tokens and expiry on their account
-	await user.save();
-	const resetURL =`http://${req.headers.host}.account/reset/${user.resetPasswordToken}`;
-	req.flash('success', `you have been emailed a password reset link. ${resetURL}`);
-	res.redirect('/login');
+  // 1. See if a user with that email exists
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    req.flash('error', 'No account with that email exists.');
+    return res.redirect('/login');
+  }
+  // 2. Set reset tokens and expiry on their account
+  user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
+  user.resetPasswordExpires = Date.now() + 3600000; // 1 hour from now
+  await user.save();
+  // 3. Send them an email with the token
+  const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
+  req.flash('success', `You have been emailed a password reset link. ${resetURL}`);
+  // 4. redirect to login page
+  res.redirect('/login');
 };
 
 exports.reset = async (req, res) => {
-	const user = await User.findOne({
-      resetPasswordToken: req.params.token,
-      resetPasswordExpires: { $gt: Date.now() }
-	});
-	if (!user) {
-		req.flash('error', 'Password reset is invalid or expired');
-		return res.redirect('/login');
-	}
-	res.render('reset', { title: 'Reset your Password' });
+  const user = await User.findOne({
+    resetPasswordToken: req.params.token,
+    resetPasswordExpires: { $gt: Date.now() }
+  });
+  if (!user) {
+    req.flash('error', 'Password reset is invalid or has expired');
+    return res.redirect('/login');
+  }
+  // if there is a user, show the rest password form
+  res.render('reset', { title: 'Reset your Password' });
 };
