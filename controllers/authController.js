@@ -2,6 +2,7 @@ const passport = require('passport');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const promisify = require('es6-promisify');
 
 exports.login = passport.authenticate('local', {
    failureRedirect: '/login',
@@ -76,5 +77,12 @@ exports.update = async (req, res) => {
     return res.redirect('/login');
   }
 
-  user.setPassword()
+  const setPassword = promisify(user.setPassword, user);
+  await setPassword(req.body.password);
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+  const updatedUser = await user.save();
+  await req.login(updatedUser);
+  req.flash('Success', 'Your password has been reset!  You are now logged in.');
+  res.redirect('/');
 };
