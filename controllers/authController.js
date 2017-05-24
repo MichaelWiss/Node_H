@@ -55,3 +55,7 @@ exports.reset = async (req, res) => {
   // if there is a user, show the rest password form
   res.render('reset', { title: 'Reset your Password' });
 };
+
+exports.confirmedPasswords = (req, res) => {
+   if (req.body.password === req.body.password-confirm)
+}
