@@ -51,4 +51,5 @@ exports.reset = async (req, res) => {
 		req.flash('error', 'Password reset is invalid or expired');
 		return res.redirect('/login');
 	}
-}
+	res.render('reset', { title: 'Reset your Password' });
+};
