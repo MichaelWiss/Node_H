@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+
 // Make sure we are running node 7.6+
 const [major, minor] = process.versions.node.split('.').map(parseFloat);
 if (major <= 7 && minor <= 5) {
@@ -29,3 +31,5 @@ app.set('port', process.env.PORT || 7777);
 const server = app.listen(app.get('port'), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
+
+require('./handlers/mail');

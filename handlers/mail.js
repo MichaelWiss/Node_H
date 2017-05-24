@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 const juice = require('juice');
-const htmlToText = require('htmlToText');
+const htmlToText = require('html-To-Text');
 const promisify = require('es6-promisify');
 
 const transport = nodemailer.createTransport({
@@ -11,4 +11,13 @@ const transport = nodemailer.createTransport({
 		user: process.env.MAIL_USER,
 		pass: process.env.MAIL_PASS
 	}
-})
+});
+
+transport.sendMail({
+	from: 'Michael Wiss <michael.wiss@gmail.com>',
+	to: 'michael.wiss@gmail.com',
+	subject: 'Just trying things out',
+	html: 'Hey I <strong>love</strong> you',
+	text: 'Hey I love you'
+});
+
