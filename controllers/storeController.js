@@ -54,10 +54,9 @@ exports.createStore = async (req, res) => {
 };
 
 exports.getStores = async (req, res) => {
-	// query the database for a list of all stores
-	const stores = await Store.find();
-	console.log(stores);
-	res.render('stores', { title: 'Stores', stores });
+  // 1. Query the database for a list of all stores
+  const stores = await Store.find();
+  res.render('stores', { title: 'Stores', stores });
 };
 
 
@@ -72,10 +71,10 @@ exports.editStore = async (req, res) => {
 	const store = await Store.findOne({_id: req.params.id });
 	
 	//confirm they are the owner
-	confirmOwner(store, )
+	confirmOwner(store, req.user);
 	//render out edit form
 	res.render('editStore',  { title: `Edit ${store.name}`, store });
-}
+};
 
 exports.updateStore = async (req, res) => {
 	//set the location data to be a point
