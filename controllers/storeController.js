@@ -68,7 +68,7 @@ const confirmOwner = (store, user) => {
 
 exports.editStore = async (req, res) => {
 	//find store
-	const store = await Store.findOne({_id: req.params.id });
+	const store = await Store.findOne({ _id: req.params.id });
 	
 	//confirm they are the owner
 	confirmOwner(store, req.user);
