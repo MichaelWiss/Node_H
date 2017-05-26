@@ -1023,6 +1023,11 @@ function typeAhead(search) {
     if (!search) return;
 
     var searchInput = search.querySelector('input[name="search"]');
+    var searchResults = search.querySelector('.search__results');
+
+    searchInput.on('input', function () {
+        console.log(this.value);
+    });
 }
 
 exports.default = typeAhead;
