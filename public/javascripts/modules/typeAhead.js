@@ -7,7 +7,7 @@ function searchResultsHTML(stores) {
 		    <strong>${store.name}</strong>
 		  </a>
 		`;
-	}).join('')
+	}).join('');
 
 }      
 
@@ -30,9 +30,7 @@ function typeAhead(search) {
     	  .get(`/api/search?q=${this.value}`)
     	  .then(res => {
     	  	if(res.data.length) {
-    	  		console.log('There is something to show!');
-    	  		const html = searchResultsHTML(res.data);
-    	  		console.log(html);
+    	  		searchResults.innerHTML = searchResultsHTML(res.data);
     	  	}
     	  })
     });

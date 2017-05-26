@@ -1041,9 +1041,7 @@ function typeAhead(search) {
 
     axios.get('/api/search?q=' + this.value).then(function (res) {
       if (res.data.length) {
-        console.log('There is something to show!');
-        var html = searchResultsHTML(res.data);
-        console.log(html);
+        searchResults.innerHTML = searchResultsHTML(res.data);
       }
     });
   });
