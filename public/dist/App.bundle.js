@@ -1026,7 +1026,9 @@ function typeAhead(search) {
     var searchResults = search.querySelector('.search__results');
 
     searchInput.on('input', function () {
-        console.log(this.value);
+        if (!this.value) {
+            searchResults.style.display = 'none';
+        }
     });
 }
 
