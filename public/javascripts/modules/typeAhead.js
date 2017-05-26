@@ -7,7 +7,7 @@ function searchResultsHTML(stores) {
 		    <strong>${store.name}</strong>
 		  </a>
 		`;
-	})
+	}).join('')
 
 }      
 
@@ -31,6 +31,8 @@ function typeAhead(search) {
     	  .then(res => {
     	  	if(res.data.length) {
     	  		console.log('There is something to show!');
+    	  		const html = searchResultsHTML(res.data);
+    	  		console.log(html);
     	  	}
     	  })
     });

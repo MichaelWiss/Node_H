@@ -1022,7 +1022,7 @@ var axios = __webpack_require__(19);
 function searchResultsHTML(stores) {
   return stores.map(function (store) {
     return '\n\t\t  <a href="/stores/' + store.slug + '" class="search__result">\n\t\t    <strong>' + store.name + '</strong>\n\t\t  </a>\n\t\t';
-  });
+  }).join('');
 }
 
 function typeAhead(search) {
@@ -1042,6 +1042,8 @@ function typeAhead(search) {
     axios.get('/api/search?q=' + this.value).then(function (res) {
       if (res.data.length) {
         console.log('There is something to show!');
+        var html = searchResultsHTML(res.data);
+        console.log(html);
       }
     });
   });
