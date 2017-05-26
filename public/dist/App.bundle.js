@@ -1015,21 +1015,36 @@ process.umask = function () {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var axios = __webpack_require__(19);
 
+function searchResultsHTML(stores) {
+  return stores.map(function (store) {
+    return '\n\t\t  <a href="/stores/' + store.slug + '" class="search__result">\n\t\t    <strong>' + store.name + '</strong>\n\t\t  </a>\n\t\t';
+  });
+}
+
 function typeAhead(search) {
-    if (!search) return;
+  if (!search) return;
 
-    var searchInput = search.querySelector('input[name="search"]');
-    var searchResults = search.querySelector('.search__results');
+  var searchInput = search.querySelector('input[name="search"]');
+  var searchResults = search.querySelector('.search__results');
 
-    searchInput.on('input', function () {
-        if (!this.value) {
-            searchResults.style.display = 'none';
-        }
+  searchInput.on('input', function () {
+    if (!this.value) {
+      searchResults.style.display = 'none';
+      return;
+    }
+
+    searchResults.style.display = 'block';
+
+    axios.get('/api/search?q=' + this.value).then(function (res) {
+      if (res.data.length) {
+        console.log('There is something to show!');
+      }
     });
+  });
 }
 
 exports.default = typeAhead;
