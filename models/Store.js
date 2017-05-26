@@ -42,8 +42,8 @@ const storeSchema = new mongoose.Schema({
 
 //define our indexes
 storeSchema.index({
+  description: 'text',
   name: 'text',
-  description: 'text'
 });
 
 storeSchema.pre('save', async function(next) {
