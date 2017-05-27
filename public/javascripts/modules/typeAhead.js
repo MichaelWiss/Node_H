@@ -53,7 +53,7 @@ function typeAhead(search) {
     	if (e.keyCode === 40 && current) {
     		next = current.nextElementSibling || items[0];
     	} else if (e.keyCode === 40) {
-    		next === items[0];
+    		next = items[0];
     	} else if (e.keyCode ===38 && current) {
     		next = current.previousElementsSibling || items[items.length -1]
     	} else if (e.keyCode === 38) {
