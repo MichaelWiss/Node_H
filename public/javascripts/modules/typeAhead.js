@@ -48,6 +48,13 @@ function typeAhead(search) {
     	}
     	const activeClass = 'search__result--active';
     	const current = search.querySelector(`.${activeClass}`);
+    	const items = search.querySelectorAll('.search__result');
+    	let next;
+    	if (e.keyCode === 40 && current) {
+    		next = current.nextElementSibling || items[0];
+    	} else if (e.keyCode === 40) {
+    		next === items[0];
+    	}
     });
 }
 
