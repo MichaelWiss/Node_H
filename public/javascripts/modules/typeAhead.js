@@ -54,6 +54,12 @@ function typeAhead(search) {
     		next = current.nextElementSibling || items[0];
     	} else if (e.keyCode === 40) {
     		next === items[0];
+    	} else if (e.keyCode ===38 && current) {
+    		next = current.previousElementsSibling || items[items.length -1]
+    	} else if (e.keyCode === 38) {
+    		next = items[items.length -1];
+    	} else if (e.keyCode === 13 && current.href) {
+    		window.location === current.href;
     	}
     });
 }
