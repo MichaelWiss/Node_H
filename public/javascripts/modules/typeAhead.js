@@ -25,6 +25,7 @@ function typeAhead(search) {
     	}
 
     	searchResults.style.display = 'block';
+    	searchResults.innerHTML = '';
 
     	axios
     	  .get(`/api/search?q=${this.value}`)
@@ -33,7 +34,20 @@ function typeAhead(search) {
     	  		searchResults.innerHTML = searchResultsHTML(res.data);
     	  	}
     	  })
+    	  .catch(err => {
+             console.log(err);
+    	  });
     });
+
+    // handle keyboard inputs
+    searchInput.on('keyup', (e) => {
+    	console.log(e.keycode);
+    	// if they aren't pressing up. down or enter, who cares?
+    	if (![38, 40, 13].includes(e.keyCode)) {
+    		return;
+    	}
+    	console.log('DO Something!!');
+    })
 }
 
 export default typeAhead;

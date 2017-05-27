@@ -1038,12 +1038,25 @@ function typeAhead(search) {
     }
 
     searchResults.style.display = 'block';
+    searchResults.innerHTML = '';
 
     axios.get('/api/search?q=' + this.value).then(function (res) {
       if (res.data.length) {
         searchResults.innerHTML = searchResultsHTML(res.data);
       }
+    }).catch(function (err) {
+      console.log(err);
     });
+  });
+
+  // handle keyboard inputs
+  searchInput.on('keyup', function (e) {
+    console.log(e.keycode);
+    // if they aren't pressing up. down or enter, who cares?
+    if (![38, 40, 13].includes(e.keyCode)) {
+      return;
+    }
+    console.log('DO Something!!');
   });
 }
 
