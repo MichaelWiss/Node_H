@@ -3,7 +3,7 @@ const axios = require('axios');
 function searchResultsHTML(stores) {
 	return stores.map(store => {
 		return `
-		  <a href="/stores/${store.slug}" class="search__result">
+		  <a href="/store/${store.slug}" class="search__result">
 		    <strong>${store.name}</strong>
 		  </a>
 		`;
@@ -41,7 +41,7 @@ function typeAhead(search) {
 
     // handle keyboard inputs
     searchInput.on('keyup', (e) => {
-    	console.log(e.keycode);
+    	
     	// if they aren't pressing up. down or enter, who cares?
     	if (![38, 40, 13].includes(e.keyCode)) {
     		return;
@@ -54,14 +54,18 @@ function typeAhead(search) {
     		next = current.nextElementSibling || items[0];
     	} else if (e.keyCode === 40) {
     		next = items[0];
-    	} else if (e.keyCode ===38 && current) {
+    	} else if (e.keyCode === 38 && current) {
     		next = current.previousElementsSibling || items[items.length -1]
     	} else if (e.keyCode === 38) {
     		next = items[items.length -1];
     	} else if (e.keyCode === 13 && current.href) {
-    		window.location = current.href;
+          window.location = current.href;
+    	  return;
     	}
-    	console.log(next);
+    	if (current) {
+    		current.classList.remove(activeClass);
+    	}
+    	next.classList.add(activeClass);
     });
 }
 
