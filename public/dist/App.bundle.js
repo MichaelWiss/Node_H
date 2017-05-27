@@ -1069,8 +1069,9 @@ function typeAhead(search) {
     } else if (e.keyCode === 38) {
       next = items[items.length - 1];
     } else if (e.keyCode === 13 && current.href) {
-      window.location === current.href;
+      window.location = current.href;
     }
+    console.log(next);
   });
 }
 
