@@ -1056,7 +1056,8 @@ function typeAhead(search) {
     if (![38, 40, 13].includes(e.keyCode)) {
       return;
     }
-    console.log('DO Something!!');
+    var activeClass = 'search__result--active';
+    var current = search.querySelector('.' + activeClass);
   });
 }
 

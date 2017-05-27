@@ -46,8 +46,9 @@ function typeAhead(search) {
     	if (![38, 40, 13].includes(e.keyCode)) {
     		return;
     	}
-    	console.log('DO Something!!');
-    })
+    	const activeClass = 'search__result--active';
+    	const current = search.querySelector(`.${activeClass}`);
+    });
 }
 
 export default typeAhead;
