@@ -137,7 +137,7 @@ exports.mapStores = async (req, res) => {
 
 	};
 
-	const stores = await Store.find(q).select('photo name');
+	const stores = await Store.find(q).select('slug name description location');
 	res.json(stores);
 };
 
