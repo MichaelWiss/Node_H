@@ -123,7 +123,8 @@ exports.searchStores = async (req, res) => {
 };
 
 exports.mapStores = async (req, res) => {
-	res.json({ it: 'Worked!' });
+	const coordinates = [req.query.lng, req.query.lat];
+	res.json(req.query);
 };
 
 
