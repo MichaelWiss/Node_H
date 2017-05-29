@@ -987,7 +987,7 @@ exports.$$ = $$;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _axios = __webpack_require__(2);
@@ -999,18 +999,20 @@ var _bling = __webpack_require__(10);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapOptions = {
-  center: { lat: 43.2, lng: -79.8 },
-  zoom: 2
+    center: { lat: 43.2, lng: -79.8 },
+    zoom: 8
 };
 
 function loadPlaces(map) {
-  var lat = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 43.2;
-  var lng = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -79.8;
+    var lat = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 43.2;
+    var lng = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -79.8;
 }
 
 function makeMap(mapDiv) {
-  if (!mapDiv) return;
-  var map = new google.maps.Map(mapDiv, mapOptions);
+    if (!mapDiv) return;
+    var map = new google.maps.Map(mapDiv, mapOptions);
+    var input = (0, _bling.$)('[name="geolocate"]');
+    console.log(input);
 };
 
 exports.default = makeMap;
