@@ -1013,6 +1013,7 @@ function makeMap(mapDiv) {
     var map = new google.maps.Map(mapDiv, mapOptions);
     var input = (0, _bling.$)('[name="geolocate"]');
     console.log(input);
+    var autocomplete = new google.maps.places.Autocomplete(input);
 };
 
 exports.default = makeMap;
