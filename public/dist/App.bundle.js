@@ -1030,6 +1030,14 @@ function loadPlaces(map) {
          marker.place = place;
          return marker;
       });
+
+      markers.forEach(function (marker) {
+         return marker.addListener('click', function () {
+            infoWindow.setContent(this.place.name);
+            infoWindow.open(map, this);
+         });
+      });
+
       map.setCenter(bounds.getCenter());
       map.fitBounds(bounds);
    });

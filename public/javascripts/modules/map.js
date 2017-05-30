@@ -26,6 +26,13 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
    	  	marker.place = place;
    	  	return marker;
    	  });
+
+      markers.forEach(marker => marker.addListener('click', function() {
+      	infoWindow.setContent(this.place.name);
+      	infoWindow.open(map, this);
+      }));
+
+
    	  map.setCenter(bounds.getCenter());
    	  map.fitBounds(bounds);
    });
