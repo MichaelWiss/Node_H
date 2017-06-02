@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema({
 	created: {
 		type: Date,
 		defautl: Date.now
-	}
+	},
 	author: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User',
