@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_reviewForm
+include mixins/_review
 
 
 block content
@@ -30,7 +31,7 @@ block content
       .reviews
         each review in store.reviews
           .review
-            p=review.text
+            +review(review)
       
 
 
