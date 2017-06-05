@@ -46,7 +46,7 @@ const storeSchema = new mongoose.Schema({
 //define our indexes
 storeSchema.index({
   description: 'text',
-  name: 'text',
+  name: 'text'
 });
 
 storeSchema.index({ location: '2dsphere' });
@@ -81,5 +81,7 @@ storeSchema.virtual('reviews', {
    localField: '_id', // which field on the store
    foreignField: 'store' //which field on the review?
 });
+
+
 
 module.exports = mongoose.model('Store', storeSchema);
