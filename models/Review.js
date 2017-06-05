@@ -33,8 +33,8 @@ function autopopulate(next) {
 	next();
 }
 
-reviewSchema.pre('find', autocomplete);
-reviewSchema.pre('findOne', autocomplete);
+reviewSchema.pre('find', autopopulate);
+reviewSchema.pre('findOne', autopopulate);
 
 module.exports = mongoose.model('Review', reviewSchema);
 
