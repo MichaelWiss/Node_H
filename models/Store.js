@@ -75,6 +75,8 @@ storeSchema.statics.getTagsList = function() {
     ]);
 };
 
+store.Schema.statics.getTopStores = function()
+
 // find reviews where the stores _id property === reviews store property
 storeSchema.virtual('reviews', {
    ref: 'Review',  // what model to link
