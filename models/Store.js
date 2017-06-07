@@ -75,7 +75,15 @@ storeSchema.statics.getTagsList = function() {
     ]);
 };
 
-store.Schema.statics.getTopStores = function()
+store.Schema.statics.getTopStores = function() {  
+  return this.aggregate([
+      //lookup stores and populate their reviews
+      //filter for only items that have two or more reviews
+      //add the average reviews field
+      //sort it by our new field, highest reviews first
+      //limit to 10
+    ]);
+}
 
 // find reviews where the stores _id property === reviews store property
 storeSchema.virtual('reviews', {
