@@ -75,9 +75,11 @@ storeSchema.statics.getTagsList = function() {
     ]);
 };
 
-store.Schema.statics.getTopStores = function() {  
+storeSchema.statics.getTopStores = function() {  
   return this.aggregate([
       //lookup stores and populate their reviews
+      { $lookup: { from: 'reviews', localField: '_id', foreignField: 
+      'store', as: 'reviews' }},
       //filter for only items that have two or more reviews
       //add the average reviews field
       //sort it by our new field, highest reviews first
