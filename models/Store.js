@@ -83,6 +83,9 @@ storeSchema.statics.getTopStores = function() {
       //filter for only items that have two or more reviews
       { $match: {'reviews.1': { $exists: true } }}
       //add the average reviews field
+      { $project: {
+        averageRating: { $avg: 'reviews.rating' }
+      }}
       //sort it by our new field, highest reviews first
       //limit to 10
     ]);
