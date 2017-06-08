@@ -81,11 +81,11 @@ storeSchema.statics.getTopStores = function() {
       { $lookup: { from: 'reviews', localField: '_id', foreignField: 
       'store', as: 'reviews' }},
       //filter for only items that have two or more reviews
-      { $match: {'reviews.1': { $exists: true } }}
+      { $match: {'reviews.1': { $exists: true } }},
       //add the average reviews field
       { $project: {
-        averageRating: { $avg: 'reviews.rating' }
-      }}
+        averageRating: { $avg: '$reviews.rating' }
+      } }
       //sort it by our new field, highest reviews first
       //limit to 10
     ]);
