@@ -10,3 +10,6 @@ block content
         td name
         td reviews
         td Average Rating
+      each store, i in stores
+        tr
+          td: img(width=200 src=`/uploads/${store.photo || 'store.png'}` alt=store.name)
