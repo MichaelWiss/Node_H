@@ -88,9 +88,11 @@ storeSchema.statics.getTopStores = function() {
         name: '$$ROOT.name',
         reviews: '$$ROOT.reviews',
         averageRating: { $avg: '$reviews.rating' }
-      } }
+      } },
       //sort it by our new field, highest reviews first
+      { $sort: { averageRationg: -1 }},
       //limit to 10
+      { $limit: 10 }
     ]);
 }
 
