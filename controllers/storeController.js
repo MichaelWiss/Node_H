@@ -64,7 +64,7 @@ exports.getStores = async (req, res) => {
   const stores = await Store
   .find()
   .skip(skip)
-  
+  .limit(limit)
   res.render('stores', { title: 'Stores', stores });
 };
 
